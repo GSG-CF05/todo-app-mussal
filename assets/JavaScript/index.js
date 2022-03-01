@@ -1,20 +1,20 @@
 // * Declaring the variables that will hold the existed elements.
 let form = document.querySelector("form");
 let inputBox = document.getElementById("input");
-let inputBtn = document.getElementsByTagName("input")[1];
+let submitBtn = document.getElementsByTagName("input")[1];
 let tasksDiv = document.getElementsByClassName("tasks-container")[0];
 
 // * Preventing the default behavior of the form.
-inputBtn.onclick = function (e) {
+submitBtn.onclick = function (e) {
   e.preventDefault();
 };
 
 // * When the user will type anything except spaces, the class 'active' will be passed to the submit button.
 inputBox.onkeyup = (e) => {
   if (inputBox.value.trim() !== "") {
-    inputBtn.classList.add("active");
+    submitBtn.classList.add("active");
   } else {
-    inputBtn.classList.remove("active");
+    submitBtn.classList.remove("active");
   }
 };
 
@@ -25,6 +25,13 @@ if (localStorage.getItem("task")) {
 } else {
   tasksArray = [];
 }
+
+// * Creating the event listener for the submit button.
+submitBtn.addEventListener("click", (e) => {
+  addTaskToArray(inputBox.value);
+  addElementsToPage(tasksArray);
+  inputBox.value = "";
+});
 
 // * The function that is responsible for adding teh tasks data in the array.
 function addTaskToArray(taskText) {
@@ -58,7 +65,7 @@ function addElementsToPage(tasksArray) {
 
     tasksDiv.appendChild(taskCont);
     taskCont.appendChild(textSpan);
-    taskCont.appendChild(deleteBtn);
+    taskCont.appendChild(doneBtn);
     taskCont.appendChild(deleteBtn);
   });
 }
