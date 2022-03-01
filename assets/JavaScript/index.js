@@ -17,3 +17,21 @@ inputBox.onkeyup = (e) => {
     inputBtn.classList.remove("active");
   }
 };
+
+// * Checking if the local storage has data for 'task' key or not.
+let tasksArray;
+if (localStorage.getItem("task")) {
+  tasksArray = JSON.parse(localStorage.getItem("task"));
+} else {
+  tasksArray = [];
+}
+
+// * The function that is responsible for adding teh tasks data in the array.
+function addTaskToArray(taskText) {
+  let taskData = {
+    id: Math.floor(Math.random() * 100), // ? We can also generate a unique number by Data.now() function.
+    text: taskText,
+    isCompleted: false,
+  };
+  tasksArray.push(taskData);
+}
