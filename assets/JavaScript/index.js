@@ -35,3 +35,30 @@ function addTaskToArray(taskText) {
   };
   tasksArray.push(taskData);
 }
+
+// * The function that responsible for adding the elements to the page.
+function addElementsToPage(tasksArray) {
+  // * if we add the elements in each update, there will be duplication in some tasks, so we empty the container.
+  tasksDiv.innerHTML = "";
+  // * Looping on the array to create elements for each task.
+  tasksArray.forEach((element) => {
+    let taskCont = document.createElement("div");
+    taskCont.className = "task";
+    let textSpan = document.createElement("span");
+    textSpan.className = "text";
+    textSpan.textContent = element.text; // ? textSpan.appendChild(document.createTextNode(element.text));
+    let doneBtn = document.createElement("button");
+    doneBtn.className = "done";
+    doneBtn.type = "button";
+    doneBtn.textContent = "Done";
+    let deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete";
+    deleteBtn.type = "button";
+    deleteBtn.textContent = "Delete";
+
+    tasksDiv.appendChild(taskCont);
+    taskCont.appendChild(textSpan);
+    taskCont.appendChild(deleteBtn);
+    taskCont.appendChild(deleteBtn);
+  });
+}
