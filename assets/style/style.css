@@ -75,6 +75,7 @@ body {
   border: none;
   border-radius: 1em;
   opacity: 0.8;
+  cursor: pointer;
 }
 
 .container .form-cont .form #input + input.active {
@@ -124,6 +125,7 @@ body {
   border: none;
   border-radius: 8px;
   opacity: 0.9;
+  cursor: pointer;
 }
 
 .container .tasks-container .task button:hover {
