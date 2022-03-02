@@ -58,6 +58,10 @@ function addElementsToPage(tasksArray) {
     let textSpan = document.createElement("span");
     textSpan.className = "text";
     textSpan.textContent = element.text; // ? textSpan.appendChild(document.createTextNode(element.text));
+    let editBtn = document.createElement("button");
+    editBtn.className = "edit";
+    editBtn.type = "button";
+    editBtn.textContent = "Edit";
     let doneBtn = document.createElement("button");
     doneBtn.className = "done";
     doneBtn.type = "button";
@@ -69,6 +73,7 @@ function addElementsToPage(tasksArray) {
 
     tasksDiv.appendChild(taskCont);
     taskCont.appendChild(textSpan);
+    taskCont.appendChild(editBtn);
     taskCont.appendChild(doneBtn);
     taskCont.appendChild(deleteBtn);
   });
@@ -111,9 +116,19 @@ function deleteTask(id) {
 // * The function that responsible for editing the the text of the task.
 
 tasksDiv.addEventListener("click", (e) => {
-  if (e.target.classList.contains("text")) {
-    e.target.setAttribute("contenteditable", "true");
+  if (e.target.classList.contains("edit")) {
     tasksArray.forEach((ele) => {
+      let textSpan =
+        document.getElementsByClassName("text")[tasksArray.indexOf(ele)];
+      textSpan.setAttribute("contenteditable", "true");
+      textSpan.focus();
+      if (e.target.textContent === "Edit") {
+        e.target.textContent = "Save";
+        textSpan.focus();
+      } else {
+        e.target.textContent = "Edit";
+        textSpan.blur();
+      }
       let textInput =
         document.getElementsByClassName("text")[tasksArray.indexOf(ele)]
           .innerHTML;
@@ -122,4 +137,3 @@ tasksDiv.addEventListener("click", (e) => {
   }
   addTasksToLocalStorage(tasksArray);
 });
-
