@@ -55,6 +55,9 @@ function addElementsToPage(tasksArray) {
     let taskCont = document.createElement("div");
     taskCont.className = "task";
     taskCont.setAttribute("data-id", element.id);
+    if (element.isCompleted) {
+      taskCont.className = "task done";
+    }
     let textSpan = document.createElement("span");
     textSpan.className = "text";
     textSpan.textContent = element.text; // ? textSpan.appendChild(document.createTextNode(element.text));
@@ -135,5 +138,21 @@ tasksDiv.addEventListener("click", (e) => {
       ele.text = textInput;
     });
   }
+  addTasksToLocalStorage(tasksArray);
+});
+
+// * The function that responsible for styling the task as done.
+tasksDiv.addEventListener("click", (e) => {
+  let id = e.target.parentElement.getAttribute("data-id");
+  if (e.target.classList.contains("done")) {
+    e.target.parentElement.classList.toggle("done");
+  }
+  tasksArray.forEach((ele) => {
+    if (ele.id == id) {
+      ele.isCompleted === false
+        ? (ele.isCompleted = true)
+        : (ele.isCompleted = false);
+    }
+  });
   addTasksToLocalStorage(tasksArray);
 });
