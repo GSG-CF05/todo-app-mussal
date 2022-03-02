@@ -110,6 +110,11 @@ body {
   letter-spacing: 1px;
 }
 
+.container .tasks-container .task.done span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
 .container .tasks-container .task button {
   width: 5em;
   height: 3em;
