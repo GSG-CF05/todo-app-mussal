@@ -30,6 +30,7 @@ if (localStorage.getItem("task")) {
 submitBtn.addEventListener("click", (e) => {
   addTaskToArray(inputBox.value);
   addElementsToPage(tasksArray);
+  addTasksToLocalStorage(tasksArray);
   inputBox.value = "";
 });
 
@@ -68,4 +69,9 @@ function addElementsToPage(tasksArray) {
     taskCont.appendChild(doneBtn);
     taskCont.appendChild(deleteBtn);
   });
+}
+
+// * the function that responsible for adding the elements to local storage.
+function addTasksToLocalStorage(tasksArray) {
+  window.localStorage.setItem("task", JSON.stringify(tasksArray));
 }
