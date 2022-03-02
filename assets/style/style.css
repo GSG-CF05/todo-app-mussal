@@ -3,8 +3,10 @@
 :root {
   --first-color: #30067a;
   --second-color: #3f51b5;
+  --third-color: #30067a;
   --dark-white: #eee;
-  --white: #fff;
+  --light: #fff;
+  --theme-bck: #673ab7;
 }
 
 * {
@@ -17,6 +19,20 @@ body {
   width: 99%;
   height: 97.8vh;
   background-image: url(../pictures/sun-tornado.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  font-family: "Roboto", sans-serif;
+}
+
+.dark {
+  --first-color: #84d7fc;
+  --second-color: #673ab7;
+  --third-color: #0c6d99;
+  --theme-bck: #fff;
+  --light: #000;
+  background-image: url(../pictures/endless-constellation.svg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,7 +87,7 @@ body {
   width: 20%;
   height: 3em;
   background-color: var(--second-color);
-  color: var(--white);
+  color: var(--light);
   border: none;
   border-radius: 1em;
   opacity: 0.8;
@@ -107,7 +123,7 @@ body {
 }
 
 .container .tasks-container .task span {
-  color: var(--white);
+  color: var(--light);
   letter-spacing: 1px;
 }
 
@@ -119,8 +135,8 @@ body {
 .container .tasks-container .task button {
   width: 5em;
   height: 3em;
-  background-color: var(--white);
-  color: var(--first-color);
+  background-color: var(--light);
+  color: var(--third-color);
   font-weight: bold;
   border: none;
   border-radius: 8px;
@@ -131,6 +147,22 @@ body {
 .container .tasks-container .task button:hover {
   opacity: 1;
   text-decoration: underline;
+}
+
+.theme-toggle {
+  color: var(--light);
+  background-color: var(--theme-bck);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1em;
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
 /* ? Starting the media query for the tablet. */
