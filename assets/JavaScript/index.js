@@ -107,3 +107,19 @@ function deleteTask(id) {
   tasksArray = tasksArray.filter((ele) => ele.id != id); // ? !== won't work. Clearly the id in the attribute is a string
   addTasksToLocalStorage(tasksArray);
 }
+
+// * The function that responsible for editing the the text of the task.
+
+tasksDiv.addEventListener("click", (e) => {
+  if (e.target.classList.contains("text")) {
+    e.target.setAttribute("contenteditable", "true");
+    tasksArray.forEach((ele) => {
+      let textInput =
+        document.getElementsByClassName("text")[tasksArray.indexOf(ele)]
+          .innerHTML;
+      ele.text = textInput;
+    });
+  }
+  addTasksToLocalStorage(tasksArray);
+});
+
