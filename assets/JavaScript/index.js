@@ -19,12 +19,14 @@ inputBox.onkeyup = (e) => {
 };
 
 // * Checking if the local storage has data for 'task' key or not.
-let tasksArray;
+
+let tasksArray = [];
 if (localStorage.getItem("task")) {
   tasksArray = JSON.parse(localStorage.getItem("task"));
-} else {
-  tasksArray = [];
 }
+
+// * Calling the function to
+getDataFromLocalStorage();
 
 // * Creating the event listener for the submit button.
 submitBtn.addEventListener("click", (e) => {
@@ -71,7 +73,22 @@ function addElementsToPage(tasksArray) {
   });
 }
 
-// * the function that responsible for adding the elements to local storage.
+// * The function that responsible for adding the elements to local storage.
 function addTasksToLocalStorage(tasksArray) {
   window.localStorage.setItem("task", JSON.stringify(tasksArray));
+}
+
+// * The function that responsible for getting the data from local storage.
+function getDataFromLocalStorage() {
+  let tasksFromLS = window.localStorage.getItem("task");
+  if (tasksFromLS) {
+    let tasks = JSON.parse(tasksFromLS);
+    // Now we need to re-add the elements to the page.
+    addElementsToPage(tasks);
+    /*
+    I faced an error here that says: index.js:54 Uncaught 
+    TypeError: Cannot read properties of null (reading 'forEach'). The solution was to declare another variable
+    to parse the first and push it ot the page, and by doing so, we make sure that the array isn't empty.
+    */
+  }
 }
