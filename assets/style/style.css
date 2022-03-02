@@ -154,7 +154,8 @@ body {
   .container .tasks-container .task .text {
     width: 75%;
   }
-  .container .tasks-container .task .done {
+  .container .tasks-container .task .done,
+  .container .tasks-container .task .edit {
     margin-right: 10px;
   }
 }
