@@ -54,6 +54,7 @@ function addElementsToPage(tasksArray) {
   tasksArray.forEach((element) => {
     let taskCont = document.createElement("div");
     taskCont.className = "task";
+    taskCont.setAttribute("data-id", element.id);
     let textSpan = document.createElement("span");
     textSpan.className = "text";
     textSpan.textContent = element.text; // ? textSpan.appendChild(document.createTextNode(element.text));
@@ -91,4 +92,18 @@ function getDataFromLocalStorage() {
     to parse the first and push it ot the page, and by doing so, we make sure that the array isn't empty.
     */
   }
+}
+
+// * The function that responsible for deleting the task.
+
+tasksDiv.addEventListener("click", (e) => {
+  if (e.target.classList.contains("delete")) {
+    deleteTask(e.target.parentElement.getAttribute("data-id"));
+    e.target.parentElement.remove();
+  }
+});
+
+function deleteTask(id) {
+  tasksArray = tasksArray.filter((ele) => ele.id != id); // ? !== won't work. Clearly the id in the attribute is a string
+  addTasksToLocalStorage(tasksArray);
 }
