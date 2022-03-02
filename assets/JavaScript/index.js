@@ -3,6 +3,8 @@ let form = document.querySelector("form");
 let inputBox = document.getElementById("input");
 let submitBtn = document.getElementsByTagName("input")[1];
 let tasksDiv = document.getElementsByClassName("tasks-container")[0];
+let bodyElement = document.querySelector("body");
+let themeChanger = document.querySelector("i");
 
 // * Preventing the default behavior of the form.
 submitBtn.onclick = function (e) {
@@ -156,3 +158,25 @@ tasksDiv.addEventListener("click", (e) => {
   });
   addTasksToLocalStorage(tasksArray);
 });
+
+// * The function that responsible for changing the theme.
+themeChanger.addEventListener("click", switchTheme);
+
+function setDarkTheme() {
+  bodyElement.classList.toggle("dark");
+}
+
+let darkTheme = localStorage.getItem("night");
+
+if (darkTheme === "on") setDarkTheme();
+
+function switchTheme() {
+  let darkTheme = localStorage.getItem("night");
+  if (darkTheme === "on") {
+    setDarkTheme();
+    darkTheme = localStorage.setItem("night", "off");
+  } else {
+    setDarkTheme();
+    darkTheme = localStorage.setItem("night", "on");
+  }
+}
