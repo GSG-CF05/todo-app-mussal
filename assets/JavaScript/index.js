@@ -32,10 +32,12 @@ getDataFromLocalStorage();
 
 // * Creating the event listener for the submit button.
 submitBtn.addEventListener("click", (e) => {
-  addTaskToArray(inputBox.value);
-  addElementsToPage(tasksArray);
-  addTasksToLocalStorage(tasksArray);
-  inputBox.value = "";
+  if (inputBox.value !== "") {
+    addTaskToArray(inputBox.value);
+    addElementsToPage(tasksArray);
+    addTasksToLocalStorage(tasksArray);
+    inputBox.value = "";
+  }
 });
 
 // * The function that is responsible for adding teh tasks data in the array.
